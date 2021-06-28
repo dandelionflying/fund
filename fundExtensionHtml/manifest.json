@@ -1,0 +1,14 @@
+{
+	"name": "Fund Extensions",
+	"description" : "Fund Extension",
+	"version": "1.0",
+	"manifest_version": 2,
+	"icons":   
+    {  
+        "128": "fund.jpg" 
+    },
+	"browser_action": {
+      "default_popup": "fund.html",
+      "default_icon": "fund.jpg"
+    }
+}
