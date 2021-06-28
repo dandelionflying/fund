@@ -1,7 +1,9 @@
 package cn.running4light.demo.web;
 
 import cn.running4light.demo.entity.SimpleDetail;
+import cn.running4light.demo.web.service.FundService;
 import com.xiaoleilu.hutool.http.HttpUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,9 @@ import java.util.Map;
 @RestController
 public class FundController {
 
+    @Autowired
+    private FundService fundService;
+
     @GetMapping("get")
     public String get(@RequestParam  String code){
         HttpUtil s = new HttpUtil();
@@ -28,14 +33,11 @@ public class FundController {
     @GetMapping("list")
     public List list(){
         String[] codes = {"003095","161725"};
-        GsonJsonParser s = new GsonJsonParser();
-        List list = new ArrayList<>();
-        for (String code :
-                codes) {
-            String data = HttpUtil.get("http://fundgz.1234567.com.cn/js/"+ code +".js");
-            String cut = data.replace("jsonpgz(", "").replace(");", "");
-            Map<String, Object> obj = s.parseMap(cut);
-            list.add(obj);
+
+        List list = fundService.find(codes);
+        for (Object sim :
+                list) {
+            System.err.println(sim);
         }
         return list;
     }

@@ -2,6 +2,7 @@ package cn.running4light.demo.entity;
 
 import com.xiaoleilu.hutool.date.DateTime;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -10,15 +11,15 @@ import java.util.Date;
  * @description
  * @createTime 2021/6/25 14:19
  */
-public class SimpleDetail {
+public class SimpleDetail implements Serializable {
     // 基金代码
     private String  fundcode;
     // 基金名称
     private String  name;
     // 截止日期
-    private Date jzrq;
-    // 估算时刻
-    private DateTime gztime;
+    private String jzrq;
+    // 估值时刻
+    private String gztime;
     // 单位净值
     private BigDecimal dwjz;
     // 估算净值
@@ -42,19 +43,19 @@ public class SimpleDetail {
         this.name = name;
     }
 
-    public Date getJzrq() {
+    public String getJzrq() {
         return jzrq;
     }
 
-    public void setJzrq(Date jzrq) {
+    public void setJzrq(String jzrq) {
         this.jzrq = jzrq;
     }
 
-    public DateTime getGztime() {
+    public String getGztime() {
         return gztime;
     }
 
-    public void setGztime(DateTime gztime) {
+    public void setGztime(String gztime) {
         this.gztime = gztime;
     }
 
@@ -80,6 +81,17 @@ public class SimpleDetail {
 
     public void setGszzl(BigDecimal gszzl) {
         this.gszzl = gszzl;
+    }
+
+    @Override
+    public String toString() {
+        return "基金代码='" + fundcode + '\'' +
+                "\t 基金名称='" + name + '\'' +
+                "\t 截止日期=" + jzrq +
+                "\t 估值时刻=" + gztime +
+                "\t 单位净值=" + dwjz +
+                "\t 估算净值=" + gsz +
+                "\t 估算增长率=" + gszzl;
     }
 
     /*"fundcode": "501057",
